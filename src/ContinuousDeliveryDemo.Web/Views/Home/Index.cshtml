@@ -1,4 +1,4 @@
-﻿
+﻿@model HomeModel
 @{
     Layout = null;
 }
@@ -8,10 +8,19 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>Todos</title>
 </head>
-<body>
-    <div> 
-    </div>
-</body>
+    <body>
+        <h1>Todos:</h1>
+        <ul>
+            @foreach (var todo in @Model.Todos)
+            {
+                <li>
+                    @todo.Message
+                    @Html.Partial("_DeleteTodo", new DeleteTodoModel() { Message = todo.Message})                    
+                </li>
+            }
+        </ul>
+        @Html.Partial("_CreateTodo", new CreateTodoModel())
+    </body>
 </html>

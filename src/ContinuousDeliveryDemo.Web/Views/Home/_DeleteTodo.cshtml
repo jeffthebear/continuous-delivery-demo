@@ -1,0 +1,7 @@
+﻿@model DeleteTodoModel
+
+@using (Html.BeginForm("delete", "home"))
+{
+    @Html.HiddenFor(m => m.Message)
+    <button type="submit">Remove</button>
+}

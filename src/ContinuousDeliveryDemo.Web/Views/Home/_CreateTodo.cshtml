@@ -1,0 +1,7 @@
+﻿@model CreateTodoModel
+
+@using (Html.BeginForm("create", "home"))
+{
+    @Html.EditorFor(m => m.Message)
+    <button type="submit">Save</button>
+}

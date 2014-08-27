@@ -34,7 +34,9 @@
       <HintPath>..\packages\StackExchange.Redis.1.0.328\lib\net45\StackExchange.Redis.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,6 +47,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Redis\RedisConnection.cs" />
     <Compile Include="Repository\TodoRepository.cs" />
+    <Compile Include="Settings\AppConfig.cs" />
+    <Compile Include="Settings\ConnectionString.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

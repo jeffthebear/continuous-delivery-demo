@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web.Hosting;
+
+namespace ContinuousDeliveryDemo.Infrastructure.Settings
+{
+    internal class ConnectionString
+    {
+        public string GetRedisConnectionString()
+        {
+            if (IsAlternateConfigAvailable())
+            {
+                using (AppConfig.Change(GetAlternateConfigPath()))
+                {
+                    return ConfigurationManager.ConnectionStrings["redisConnection"].ConnectionString;
+                }
+            }
+            return ConfigurationManager.ConnectionStrings["redisConnection"].ConnectionString;
+        }
+
+        private string GetAlternateConfigPath()
+        {
+            return Path.Combine(HostingEnvironment.ApplicationPhysicalPath, "App_Data", "app.config");
+        }
+
+        private bool IsAlternateConfigAvailable()
+        {
+            return File.Exists(GetAlternateConfigPath());
+        }
+    }
+}

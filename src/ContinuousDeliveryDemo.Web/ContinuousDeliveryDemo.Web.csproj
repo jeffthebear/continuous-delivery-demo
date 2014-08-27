@@ -81,7 +81,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_Data\app.config" />
+    <Content Include="App_Data\app.config" />
     <Content Include="Global.asax" />
     <None Include="Properties\PublishProfiles\continuousdeliverydemo.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

@@ -9,10 +9,15 @@ namespace ContinuousDeliveryDemo.Domain.Web.ViewModels
 {
     public class DeleteTodoModel
     {
-        private TodoRepository _todoRepository;
+        private ITodoRepository _todoRepository;
         public DeleteTodoModel()
         {
             _todoRepository = new TodoRepository();
+        }
+
+        public DeleteTodoModel(ITodoRepository todoRepository)
+        {
+            _todoRepository = todoRepository;
         }
 
         public string Message { get; set; }

@@ -9,13 +9,18 @@ namespace ContinuousDeliveryDemo.Domain.Web.ViewModels
 {
     public class HomeModel
     {
-        private TodoRepository _todoRepository;
+        private ITodoRepository _todoRepository;
         private HomeModel()
         {
             _todoRepository = new TodoRepository();
         }
 
-        public IEnumerable<TodoItem> Todos;
+        internal HomeModel(ITodoRepository todoRepository)
+        {
+            _todoRepository = todoRepository;
+        }
+
+        public IEnumerable<TodoItem> Todos { get; set; }
 
         public static HomeModel Create()
         {

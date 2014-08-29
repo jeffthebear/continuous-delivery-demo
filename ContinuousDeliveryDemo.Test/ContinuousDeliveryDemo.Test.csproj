@@ -36,6 +36,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Web.Mvc, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\src\ContinuousDeliveryDemo.Web\bin\System.Web.Mvc.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -50,8 +54,24 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Fakes\FakeTodoRepository.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Web\Controllers\HomeControllerTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ContinuousDeliveryDemo.Domain\ContinuousDeliveryDemo.Domain.csproj">
+      <Project>{5e1e7829-0da7-4968-87ff-586fdca6483e}</Project>
+      <Name>ContinuousDeliveryDemo.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ContinuousDeliveryDemo.Infrastructure\ContinuousDeliveryDemo.Infrastructure.csproj">
+      <Project>{018B5883-1049-4621-8816-441541E860AF}</Project>
+      <Name>ContinuousDeliveryDemo.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\ContinuousDeliveryDemo.Web\ContinuousDeliveryDemo.Web.csproj">
+      <Project>{779D4BF6-1486-4CE3-BF9D-F86225E23E53}</Project>
+      <Name>ContinuousDeliveryDemo.Web</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

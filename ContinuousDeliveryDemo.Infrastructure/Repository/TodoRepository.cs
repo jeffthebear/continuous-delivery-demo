@@ -8,7 +8,7 @@ using StackExchange.Redis;
 
 namespace ContinuousDeliveryDemo.Infrastructure.Repository
 {
-    public class TodoRepository
+    public class TodoRepository : ITodoRepository
     {
         public IEnumerable<string> FindAll()
         {

@@ -9,10 +9,15 @@ namespace ContinuousDeliveryDemo.Domain.Web.ViewModels
 {
     public class CreateTodoModel
     {
-        private TodoRepository _todoRepository;
+        private ITodoRepository _todoRepository;
         public CreateTodoModel()
         {
             _todoRepository = new TodoRepository();
+        }
+
+        public CreateTodoModel(ITodoRepository todoRepository)
+        {
+            _todoRepository = todoRepository;
         }
 
         public string Message { get; set; }

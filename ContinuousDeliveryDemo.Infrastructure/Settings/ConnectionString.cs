@@ -20,7 +20,7 @@ namespace ContinuousDeliveryDemo.Infrastructure.Settings
                     return ConfigurationManager.ConnectionStrings["redisConnection"].ConnectionString;
                 }
             }
-            return ConfigurationManager.ConnectionStrings["redisConnection"].ConnectionString;
+            throw new FileNotFoundException("Could not find configuration file.");
         }
 
         private string GetAlternateConfigPath()

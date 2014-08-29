@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using ContinuousDeliveryDemo.Domain.Web.ViewModels;
 using ContinuousDeliveryDemo.Test.Fakes;
 using ContinuousDeliveryDemo.Web.Controllers;
@@ -10,6 +11,18 @@ namespace ContinuousDeliveryDemo.Test.Web.Controllers
     [TestClass]
     public class HomeControllerTest
     {
+        [TestMethod]
+        public void IndexShouldReturnTwoTodos()
+        {
+            var fakeTodoRepository = new FakeTodoRepository();
+            HomeModel.TodoRepositoryOverride = fakeTodoRepository;
+            
+            var result = HomeModel.Create();
+
+            Assert.AreEqual("1", result.Todos.First().Message);
+            Assert.AreEqual(2, result.Todos.Count());
+        }
+
         [TestMethod]
         public void CreateShouldCreateTodoModelAndRedirectToRoot()
         {

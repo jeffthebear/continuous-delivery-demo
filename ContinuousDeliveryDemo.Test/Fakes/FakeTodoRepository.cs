@@ -14,7 +14,7 @@ namespace ContinuousDeliveryDemo.Test.Fakes
 
         public IEnumerable<string> FindAll()
         {
-            throw new NotImplementedException();
+            return new [] { "1", "2" };
         }
 
         public void Create(string message)

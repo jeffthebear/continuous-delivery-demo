@@ -20,11 +20,13 @@ namespace ContinuousDeliveryDemo.Domain.Web.ViewModels
             _todoRepository = todoRepository;
         }
 
+        internal static ITodoRepository TodoRepositoryOverride { get; set; }
+
         public IEnumerable<TodoItem> Todos { get; set; }
 
         public static HomeModel Create()
         {
-            var result = new HomeModel();
+            var result = TodoRepositoryOverride != null ? new HomeModel(TodoRepositoryOverride) : new HomeModel();
             result.Todos = result._todoRepository.FindAll().Select(todo => new TodoItem { Message = todo});
             return result;
         }

@@ -14,11 +14,14 @@ namespace ContinuousDeliveryDemo.Test.Web.Controllers
         [TestMethod]
         public void IndexShouldReturnTwoTodos()
         {
+            // Arrange
             var fakeTodoRepository = new FakeTodoRepository();
             HomeModel.TodoRepositoryOverride = fakeTodoRepository;
-            
+
+            // Act
             var result = HomeModel.Create();
 
+            // Assert
             Assert.AreEqual("1", result.Todos.First().Message);
             Assert.AreEqual(2, result.Todos.Count());
         }

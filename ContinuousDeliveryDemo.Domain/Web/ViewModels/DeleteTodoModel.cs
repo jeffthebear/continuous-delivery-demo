@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ContinuousDeliveryDemo.Domain.Infrastructure;
 using ContinuousDeliveryDemo.Infrastructure.Repository;
 
 namespace ContinuousDeliveryDemo.Domain.Web.ViewModels
@@ -12,7 +13,7 @@ namespace ContinuousDeliveryDemo.Domain.Web.ViewModels
         private ITodoRepository _todoRepository;
         public DeleteTodoModel()
         {
-            _todoRepository = new TodoRepository();
+            _todoRepository = DefaultDependencyInjectionContainer.Resolve<ITodoRepository>();
         }
 
         public DeleteTodoModel(ITodoRepository todoRepository)

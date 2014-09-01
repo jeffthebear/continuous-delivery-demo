@@ -10,15 +10,14 @@ namespace ContinuousDeliveryDemo.Infrastructure.Redis
 {
     public static class RedisConnection
     {
-        private static ConnectionString _connectionString;
-        private static ConnectionMultiplexer _redis;
+        internal static ConnectionString ConnectionString { get; set; }
+        private static readonly ConnectionMultiplexer _redis;
         static RedisConnection()
         {
-            //_redis = ConnectionMultiplexer.Connect("localhost");
-            _connectionString = new ConnectionString();
+            ConnectionString = new ConnectionString();
 
             _redis =
-                ConnectionMultiplexer.Connect(_connectionString.GetRedisConnectionString());
+                ConnectionMultiplexer.Connect(ConnectionString.GetRedisConnectionString());
         }
 
         public static ConnectionMultiplexer GetInstance()

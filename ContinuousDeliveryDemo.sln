@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContinuousDeliveryDemo.Doma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContinuousDeliveryDemo.Infrastructure", "ContinuousDeliveryDemo.Infrastructure\ContinuousDeliveryDemo.Infrastructure.csproj", "{018B5883-1049-4621-8816-441541E860AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContinuousDeliveryDemo.Test.WebTest", "ContinuousDeliveryDemo.Test.WebTest\ContinuousDeliveryDemo.Test.WebTest.csproj", "{F91D1B2C-343F-4D90-B448-7A9906BF3A8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContinuousDeliveryDemo.Test.ComponentTest", "ContinuousDeliveryDemo.Test.ComponentTest\ContinuousDeliveryDemo.Test.ComponentTest.csproj", "{B6A2EDAF-4787-4B84-AA41-6671427EDD87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +35,14 @@ Global
 		{018B5883-1049-4621-8816-441541E860AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{018B5883-1049-4621-8816-441541E860AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{018B5883-1049-4621-8816-441541E860AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F91D1B2C-343F-4D90-B448-7A9906BF3A8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F91D1B2C-343F-4D90-B448-7A9906BF3A8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F91D1B2C-343F-4D90-B448-7A9906BF3A8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F91D1B2C-343F-4D90-B448-7A9906BF3A8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6A2EDAF-4787-4B84-AA41-6671427EDD87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6A2EDAF-4787-4B84-AA41-6671427EDD87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6A2EDAF-4787-4B84-AA41-6671427EDD87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6A2EDAF-4787-4B84-AA41-6671427EDD87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

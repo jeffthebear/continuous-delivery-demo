@@ -3,33 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ContinuousDeliveryDemo.Domain.Infrastructure;
 using ContinuousDeliveryDemo.Infrastructure.Repository;
 
 namespace ContinuousDeliveryDemo.Domain.Web.ViewModels
 {
     public class HomeModel
     {
-        private ITodoRepository _todoRepository;
-        private HomeModel()
-        {
-            _todoRepository = DefaultDependencyInjectionContainer.Resolve<ITodoRepository>();
-        }
-
+        private CreateTodoModel _createTodoModel;
+        private DeleteTodoModel _deleteTodoModel;
+        
         internal HomeModel(ITodoRepository todoRepository)
         {
-            _todoRepository = todoRepository;
+            _createTodoModel = new CreateTodoModel(todoRepository);
+            _deleteTodoModel = new DeleteTodoModel(todoRepository);
         }
 
-        internal static ITodoRepository TodoRepositoryOverride { get; set; }
+        public CreateTodoModel GetCreateTodoModelWithContext()
+        {
+            return _createTodoModel;
+        }
+
+        public DeleteTodoModel GetDeleteTodoModelWithContext(string message)
+        {
+            _deleteTodoModel.Message = message;
+            return _deleteTodoModel;
+        }
 
         public IEnumerable<TodoItem> Todos { get; set; }
-
-        public static HomeModel Create()
-        {
-            var result = TodoRepositoryOverride != null ? new HomeModel(TodoRepositoryOverride) : new HomeModel();
-            result.Todos = result._todoRepository.FindAll().Select(todo => new TodoItem { Message = todo});
-            return result;
-        }
     }
 }

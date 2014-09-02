@@ -17,10 +17,10 @@
             {
                 <li>
                     @todo.Message
-                    @Html.Partial("_DeleteTodo", new DeleteTodoModel() { Message = todo.Message})                    
+                    @Html.Partial("_DeleteTodo", Model.GetDeleteTodoModelWithContext(todo.Message))                    
                 </li>
             }
         </ul>
-        @Html.Partial("_CreateTodo", new CreateTodoModel())
+        @Html.Partial("_CreateTodo", Model.GetCreateTodoModelWithContext())
     </body>
 </html>

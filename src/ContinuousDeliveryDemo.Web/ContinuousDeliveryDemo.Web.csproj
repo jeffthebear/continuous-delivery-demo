@@ -105,11 +105,14 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\DependencyInjectionConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\UnityMvcDependencyResolver.cs" />
+    <Compile Include="Infrastructure\UnityMvcModelBinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +136,10 @@
     <ProjectReference Include="..\..\ContinuousDeliveryDemo.Domain\ContinuousDeliveryDemo.Domain.csproj">
       <Project>{5E1E7829-0DA7-4968-87FF-586FDCA6483E}</Project>
       <Name>ContinuousDeliveryDemo.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ContinuousDeliveryDemo.Infrastructure\ContinuousDeliveryDemo.Infrastructure.csproj">
+      <Project>{018B5883-1049-4621-8816-441541E860AF}</Project>
+      <Name>ContinuousDeliveryDemo.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

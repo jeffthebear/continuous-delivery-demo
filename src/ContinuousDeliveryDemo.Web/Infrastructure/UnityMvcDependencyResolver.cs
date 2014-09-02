@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,16 +10,16 @@ namespace ContinuousDeliveryDemo.Web.Infrastructure
 {
     public class UnityMvcDependencyResolver : IDependencyResolver
     {
-        private const string HttpContextKey = "perRequestContainer";
+        private const string REQUEST_STORE_KEY = "perRequestContainer";
         private readonly IUnityContainer _container;
 
         protected IUnityContainer ChildContainer
         {
             get
             {
-                IUnityContainer unityContainer = HttpContext.Current.Items[(object)"perRequestContainer"] as IUnityContainer;
+                IUnityContainer unityContainer = RequestStore()[(object)REQUEST_STORE_KEY] as IUnityContainer;
                 if (unityContainer == null)
-                    HttpContext.Current.Items[(object)"perRequestContainer"] = (object)(unityContainer = this._container.CreateChildContainer());
+                    RequestStore()[(object)REQUEST_STORE_KEY] = (object)(unityContainer = this._container.CreateChildContainer());
                 return unityContainer;
             }
         }
@@ -46,14 +47,6 @@ namespace ContinuousDeliveryDemo.Web.Infrastructure
                 yield return obj;
         }
 
-        public static void DisposeOfChildContainer()
-        {
-            IUnityContainer unityContainer = HttpContext.Current.Items[(object)"perRequestContainer"] as IUnityContainer;
-            if (unityContainer == null)
-                return;
-            unityContainer.Dispose();
-        }
-
         private bool IsRegistered(Type typeToCheck)
         {
             bool flag = true;
@@ -64,6 +57,16 @@ namespace ContinuousDeliveryDemo.Web.Infrastructure
                     flag = UnityContainerExtensions.IsRegistered(this.ChildContainer, typeToCheck.GetGenericTypeDefinition());
             }
             return flag;
+        }
+
+        private static Dictionary<object, object> _backupStore = new Dictionary<object, object>();
+        private static IDictionary RequestStore()
+        {
+            if (HttpContext.Current != null)
+            {
+                return HttpContext.Current.Items;
+            }
+            return _backupStore;
         }
     }
 }

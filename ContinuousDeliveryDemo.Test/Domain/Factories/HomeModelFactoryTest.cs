@@ -10,7 +10,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ContinuousDeliveryDemo.Test.Domain.Factories
 {
     [TestClass]
-    class HomeModelFactoryTest
+    public class HomeModelFactoryTest
     {
         [TestMethod]
         public void CreateShouldReturnTwoTodos()

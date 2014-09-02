@@ -13,7 +13,6 @@ namespace ContinuousDeliveryDemo.Web
         protected void Application_Start()
         {
             DependencyInjectionConfig.Initialize();
-            AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
     }

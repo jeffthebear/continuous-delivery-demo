@@ -11,18 +11,27 @@ namespace ContinuousDeliveryDemo.Test.Domain.Web.ViewModels
     public class HomeModelTest
     {
         [TestMethod]
-        public void CreateShouldReturnTwoTodos()
+        public void GetCreateTodoModelWithContextShouldReturnCreateTodoModel()
         {
-            // Arrange
             var fakeTodoRepository = new FakeTodoRepository();
-            var homeModelFactory = new HomeModelFactory(fakeTodoRepository);
+            var homeModel = new HomeModel(fakeTodoRepository);
 
-            // Act
-            var result = homeModelFactory.Create();
+            var result = homeModel.GetCreateTodoModelWithContext();
 
-            // Assert
-            Assert.AreEqual("1", result.Todos.First().Message);
-            Assert.AreEqual(2, result.Todos.Count());
+            Assert.IsInstanceOfType(result, typeof (CreateTodoModel));
+        }
+
+        [TestMethod]
+        public void GetDeleteTodoModelWithContextShouldReturnDeleteTodoModel()
+        {
+            var message = "hello world";
+            var fakeTodoRepository = new FakeTodoRepository();
+            var homeModel = new HomeModel(fakeTodoRepository);
+
+            var result = homeModel.GetDeleteTodoModelWithContext(message);
+
+            Assert.IsInstanceOfType(result, typeof(DeleteTodoModel));
+            Assert.AreEqual(message, result.Message);
         }
     }
 }

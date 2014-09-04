@@ -10,19 +10,26 @@ namespace ContinuousDeliveryDemo.Infrastructure.Redis
 {
     public static class RedisConnection
     {
-        internal static ConnectionString ConnectionString { get; set; }
-        private static readonly ConnectionMultiplexer _redis;
-        static RedisConnection()
-        {
-            ConnectionString = new ConnectionString();
+        internal static IRedisConnectionStringProvider RedisConnectionStringProviderOverride { get; set; }
 
-            _redis =
-                ConnectionMultiplexer.Connect(ConnectionString.GetRedisConnectionString());
-        }
+        private static readonly object _initializationLock = new object();
+        private static ConnectionMultiplexer _redisConnectionMultiplexer;
 
         public static ConnectionMultiplexer GetInstance()
         {
-            return _redis;
+            if (_redisConnectionMultiplexer != null)
+                return _redisConnectionMultiplexer;
+
+            lock (_initializationLock)
+            {
+                var redisConnectionStringProvider = RedisConnectionStringProviderOverride ?? 
+                    new RedisConnectionStringProvider();
+
+                if (_redisConnectionMultiplexer == null)
+                    _redisConnectionMultiplexer = ConnectionMultiplexer.Connect(redisConnectionStringProvider.GetConnectionString());
+
+                return _redisConnectionMultiplexer;
+            }
         }
     }
 }

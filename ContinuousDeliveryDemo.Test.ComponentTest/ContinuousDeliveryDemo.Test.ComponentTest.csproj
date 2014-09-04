@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="StackExchange.Redis">
+      <HintPath>..\src\ContinuousDeliveryDemo.Web\bin\StackExchange.Redis.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -50,7 +53,15 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Fakes\FakeRedisConnectionStringProvider.cs" />
+    <Compile Include="Infrastructure\TodoRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ContinuousDeliveryDemo.Infrastructure\ContinuousDeliveryDemo.Infrastructure.csproj">
+      <Project>{018B5883-1049-4621-8816-441541E860AF}</Project>
+      <Name>ContinuousDeliveryDemo.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

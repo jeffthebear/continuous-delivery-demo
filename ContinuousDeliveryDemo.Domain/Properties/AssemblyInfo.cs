@@ -35,5 +35,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
-// Allow internal classes to be visible to ContinuousDeliveryDemo.Test
+// Allow internal classes to be visible to be tested
 [assembly: InternalsVisibleTo("ContinuousDeliveryDemo.Test")]

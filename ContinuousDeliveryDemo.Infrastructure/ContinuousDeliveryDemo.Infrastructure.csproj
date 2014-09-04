@@ -49,7 +49,8 @@
     <Compile Include="Repository\ITodoRepository.cs" />
     <Compile Include="Repository\TodoRepository.cs" />
     <Compile Include="Settings\AppConfig.cs" />
-    <Compile Include="Settings\ConnectionString.cs" />
+    <Compile Include="Settings\RedisConnectionStringProvider.cs" />
+    <Compile Include="Settings\IRedisConnectionStringProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

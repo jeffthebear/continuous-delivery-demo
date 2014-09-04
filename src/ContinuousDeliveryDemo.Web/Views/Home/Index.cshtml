@@ -13,11 +13,12 @@
     <body>
         <h1>Todos:</h1>
         <ul>
+            @{ var i = 0; }
             @foreach (var todo in @Model.Todos)
             {
                 <li>
                     @todo.Message
-                    @Html.Partial("_DeleteTodo", Model.GetDeleteTodoModelWithContext(todo.Message))                    
+                    @Html.Partial("_DeleteTodo", Model.GetDeleteTodoModelWithContext(todo.Message), new ViewDataDictionary() {{ "Index", i }})                    
                 </li>
             }
         </ul>

@@ -2,6 +2,6 @@
 
 @using (Html.BeginForm("delete", "home"))
 {
-    @Html.HiddenFor(m => m.Message)
+    @Html.HiddenFor(m => m.Message, new { id = string.Format("message-{0}", ViewBag.Index) })
     <button type="submit">Remove</button>
 }

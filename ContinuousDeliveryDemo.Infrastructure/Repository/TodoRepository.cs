@@ -10,22 +10,27 @@ namespace ContinuousDeliveryDemo.Infrastructure.Repository
 {
     public class TodoRepository : ITodoRepository
     {
+        private readonly string _todoKey;
+        private readonly IDatabase _database;
+        public TodoRepository(string key)
+        {
+            _todoKey = key;
+            _database = RedisConnection.GetInstance().GetDatabase();
+        }
+
         public IEnumerable<string> FindAll()
         {
-            IDatabase db = RedisConnection.GetInstance().GetDatabase();
-            return db.ListRange("todo").Select(t => (string) t);
+            return _database.ListRange(_todoKey).Select(t => (string)t);
         }
 
         public void Create(string message)
         {
-            IDatabase db = RedisConnection.GetInstance().GetDatabase();
-            db.ListRightPush("todo", message);
+            _database.ListRightPush(_todoKey, message);
         }
 
         public void Delete(string message)
         {
-            IDatabase db = RedisConnection.GetInstance().GetDatabase();
-            db.ListRemove("todo", message);
+            _database.ListRemove(_todoKey, message);
         }
     }
 }

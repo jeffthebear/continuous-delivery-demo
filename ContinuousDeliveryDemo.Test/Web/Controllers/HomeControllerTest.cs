@@ -76,6 +76,7 @@ namespace ContinuousDeliveryDemo.Test.Web.Controllers
             var result = homeController.Delete(deleteTodoModel);
 
             // Assert
+            Assert.AreEqual(message, fakeTodoRepository.GetDeleteInvokedMessage());
             Assert.AreEqual("/", ((RedirectResult)result).Url);
         }
     }

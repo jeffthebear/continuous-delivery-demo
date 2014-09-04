@@ -9,9 +9,9 @@ using System.Web.Hosting;
 
 namespace ContinuousDeliveryDemo.Infrastructure.Settings
 {
-    internal class ConnectionString
+    internal class RedisConnectionStringProvider : IRedisConnectionStringProvider
     {
-        public string GetRedisConnectionString()
+        public string GetConnectionString()
         {
             if (IsAlternateConfigAvailable())
             {

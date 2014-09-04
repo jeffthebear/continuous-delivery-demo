@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using ContinuousDeliveryDemo.Infrastructure.Redis;
-using ContinuousDeliveryDemo.Test.Fakes;
+using ContinuousDeliveryDemo.Test.ComponentTest.Fakes;
 using ContinuousDeliveryDemo.Web.App_Start;
 using ContinuousDeliveryDemo.Web.Infrastructure;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ContinuousDeliveryDemo.Test.Web.App_Start
+namespace ContinuousDeliveryDemo.Test.ComponentTest.Web.App_Start
 {
     [TestClass]
     public class DependencyInjectionConfigTest

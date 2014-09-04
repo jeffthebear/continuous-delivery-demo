@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContinuousDeliveryDemo.Web", "src\ContinuousDeliveryDemo.Web\ContinuousDeliveryDemo.Web.csproj", "{779D4BF6-1486-4CE3-BF9D-F86225E23E53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContinuousDeliveryDemo.Test", "ContinuousDeliveryDemo.Test\ContinuousDeliveryDemo.Test.csproj", "{1E1D2FAD-FDAF-4CBD-89A6-77C600E00F82}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContinuousDeliveryDemo.Domain", "src\ContinuousDeliveryDemo.Domain\ContinuousDeliveryDemo.Domain.csproj", "{5E1E7829-0DA7-4968-87FF-586FDCA6483E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContinuousDeliveryDemo.Domain", "ContinuousDeliveryDemo.Domain\ContinuousDeliveryDemo.Domain.csproj", "{5E1E7829-0DA7-4968-87FF-586FDCA6483E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContinuousDeliveryDemo.Infrastructure", "src\ContinuousDeliveryDemo.Infrastructure\ContinuousDeliveryDemo.Infrastructure.csproj", "{018B5883-1049-4621-8816-441541E860AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContinuousDeliveryDemo.Infrastructure", "ContinuousDeliveryDemo.Infrastructure\ContinuousDeliveryDemo.Infrastructure.csproj", "{018B5883-1049-4621-8816-441541E860AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContinuousDeliveryDemo.Unit.Test", "test\ContinuousDeliveryDemo.Unit.Test\ContinuousDeliveryDemo.Unit.Test.csproj", "{338445CD-2486-4B4D-8779-C277CF7D845E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContinuousDeliveryDemo.Test.WebTest", "ContinuousDeliveryDemo.Test.WebTest\ContinuousDeliveryDemo.Test.WebTest.csproj", "{F91D1B2C-343F-4D90-B448-7A9906BF3A8E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContinuousDeliveryDemo.Component.Test", "test\ContinuousDeliveryDemo.Component.Test\ContinuousDeliveryDemo.Component.Test.csproj", "{85AA6177-6314-4D60-AA68-920A87131E63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContinuousDeliveryDemo.Test.ComponentTest", "ContinuousDeliveryDemo.Test.ComponentTest\ContinuousDeliveryDemo.Test.ComponentTest.csproj", "{B6A2EDAF-4787-4B84-AA41-6671427EDD87}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContinuousDeliveryDemo.UI.Test", "test\ContinuousDeliveryDemo.UI.Test\ContinuousDeliveryDemo.UI.Test.csproj", "{1FE5C51B-077E-47C3-88C2-DD64C816E839}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,6 @@ Global
 		{779D4BF6-1486-4CE3-BF9D-F86225E23E53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{779D4BF6-1486-4CE3-BF9D-F86225E23E53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{779D4BF6-1486-4CE3-BF9D-F86225E23E53}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1E1D2FAD-FDAF-4CBD-89A6-77C600E00F82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1E1D2FAD-FDAF-4CBD-89A6-77C600E00F82}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1E1D2FAD-FDAF-4CBD-89A6-77C600E00F82}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1E1D2FAD-FDAF-4CBD-89A6-77C600E00F82}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5E1E7829-0DA7-4968-87FF-586FDCA6483E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5E1E7829-0DA7-4968-87FF-586FDCA6483E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E1E7829-0DA7-4968-87FF-586FDCA6483E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -35,14 +31,18 @@ Global
 		{018B5883-1049-4621-8816-441541E860AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{018B5883-1049-4621-8816-441541E860AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{018B5883-1049-4621-8816-441541E860AF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F91D1B2C-343F-4D90-B448-7A9906BF3A8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F91D1B2C-343F-4D90-B448-7A9906BF3A8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F91D1B2C-343F-4D90-B448-7A9906BF3A8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F91D1B2C-343F-4D90-B448-7A9906BF3A8E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B6A2EDAF-4787-4B84-AA41-6671427EDD87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B6A2EDAF-4787-4B84-AA41-6671427EDD87}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B6A2EDAF-4787-4B84-AA41-6671427EDD87}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B6A2EDAF-4787-4B84-AA41-6671427EDD87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{338445CD-2486-4B4D-8779-C277CF7D845E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{338445CD-2486-4B4D-8779-C277CF7D845E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{338445CD-2486-4B4D-8779-C277CF7D845E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{338445CD-2486-4B4D-8779-C277CF7D845E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85AA6177-6314-4D60-AA68-920A87131E63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85AA6177-6314-4D60-AA68-920A87131E63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85AA6177-6314-4D60-AA68-920A87131E63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85AA6177-6314-4D60-AA68-920A87131E63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FE5C51B-077E-47C3-88C2-DD64C816E839}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FE5C51B-077E-47C3-88C2-DD64C816E839}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FE5C51B-077E-47C3-88C2-DD64C816E839}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FE5C51B-077E-47C3-88C2-DD64C816E839}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

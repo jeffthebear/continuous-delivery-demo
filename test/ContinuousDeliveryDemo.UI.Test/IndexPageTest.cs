@@ -26,8 +26,8 @@ namespace ContinuousDeliveryDemo.UI.Test
             GotoIndexPage();
 
             // Assert
-            Assert.IsTrue(driver.PageSource.Contains(DEFAULT_TODOS.First()));
-            Assert.IsTrue(driver.PageSource.Contains(DEFAULT_TODOS.Last()));
+            AssertFirstDefaultTodoIsOnThePage();
+            AssertSecondDefaultTodoIsOnThePage();
 
             // Clean up
             TearDownData();
@@ -41,12 +41,13 @@ namespace ContinuousDeliveryDemo.UI.Test
 
             // Act
             GotoIndexPage();
-            driver.FindElement(By.Id("Message")).SendKeys(NEW_TODO_VALUE);
-            driver.FindElement(By.Id("create-todo-submit")).Click();
+            FillOutAndSubmitTodo(NEW_TODO_VALUE);
+            WaitForPageToLoad();
 
             // Assert
-            driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(10));
-            Assert.IsTrue(driver.PageSource.Contains(NEW_TODO_VALUE));
+            AssertFirstDefaultTodoIsOnThePage();
+            AssertSecondDefaultTodoIsOnThePage();
+            AssertTodoIsOnThePage(NEW_TODO_VALUE);
 
             // Clean up
             TearDownData();
@@ -57,19 +58,16 @@ namespace ContinuousDeliveryDemo.UI.Test
         {
             // Arrange
             SetupData();
-            var firstTestTodo = DEFAULT_TODOS.First();
+            var firstDefaultTodo = GetFirstDefaultTodo();
 
             // Act
             GotoIndexPage();
-            var deleteFormElements = driver.FindElements(By.CssSelector("form[action='/home/delete']"));
-            var deleteFormElementsWithFirstTestTodo = deleteFormElements.Where(
-                form => form.FindElements(By.CssSelector("input[value='" + firstTestTodo + "']")).Any());
-            deleteFormElementsWithFirstTestTodo.ToList().ForEach(
-                form => form.FindElement(By.CssSelector("[type='submit']")).Click());
-           
+            ClickDeleteButtonOnTodo(firstDefaultTodo);
+            WaitForPageToLoad();
+
             //// Assert
-            driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(10));
-            Assert.IsFalse(driver.PageSource.Contains(firstTestTodo));
+            AssertTodoIsNotOnThePage(firstDefaultTodo);
+            AssertSecondDefaultTodoIsOnThePage();
 
             // Clean up
             TearDownData();
@@ -78,6 +76,51 @@ namespace ContinuousDeliveryDemo.UI.Test
         private void GotoIndexPage()
         {
             driver.Navigate().GoToUrl(@"http://continuousdeliverydemo-dev/");
+        }
+
+        private void FillOutAndSubmitTodo(string todoText)
+        {
+            driver.FindElement(By.Id("Message")).SendKeys(todoText);
+            driver.FindElement(By.Id("create-todo-submit")).Click();
+        }
+
+        private void ClickDeleteButtonOnTodo(string todoText)
+        {
+            var deleteFormElements = driver.FindElements(By.CssSelector("form[action='/home/delete']"));
+            var deleteFormElementsWithFirstTestTodo = deleteFormElements.Where(
+                form => form.FindElements(By.CssSelector("input[value='" + todoText + "']")).Any());
+            deleteFormElementsWithFirstTestTodo.ToList().ForEach(
+                form => form.FindElement(By.CssSelector("[type='submit']")).Click());
+        }
+
+        private void AssertFirstDefaultTodoIsOnThePage()
+        {
+            AssertTodoIsOnThePage(DEFAULT_TODOS.First());
+        }
+
+        private void AssertSecondDefaultTodoIsOnThePage()
+        {
+            AssertTodoIsOnThePage(DEFAULT_TODOS[1]);
+        }
+
+        private void AssertTodoIsOnThePage(string todoText)
+        {
+            Assert.IsTrue(driver.PageSource.Contains(todoText));
+        }
+
+        private void AssertTodoIsNotOnThePage(string todoText)
+        {
+            Assert.IsFalse(driver.PageSource.Contains(todoText));
+        }
+
+        private void WaitForPageToLoad()
+        {
+            driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(10));
+        }
+
+        private string GetFirstDefaultTodo()
+        {
+            return DEFAULT_TODOS.First();
         }
 
         private void SetupData()

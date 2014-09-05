@@ -27,7 +27,7 @@ namespace ContinuousDeliveryDemo.Component.Test.Infrastructure
             database = RedisConnection.GetInstance().GetDatabase();
             database.KeyDelete(TEST_KEY, CommandFlags.FireAndForget);
             DEFAULT_TODOS.ToList().ForEach(todo => 
-                database.ListRightPush(TEST_KEY, todo)
+                database.SetAdd(TEST_KEY, todo)
                 );
         }
 
@@ -35,11 +35,12 @@ namespace ContinuousDeliveryDemo.Component.Test.Infrastructure
         public void FindAllShouldReturnTwoTodos()
         {
             // Act
-            var result = _todoRepository.FindAll();
+            var result = _todoRepository.FindAll().ToList();
 
             // Assert
             Assert.AreEqual(2, result.Count());
-            Assert.AreEqual(DEFAULT_TODOS.First(), result.First());
+            Assert.IsTrue(result.Contains(DEFAULT_TODOS.First()));
+            Assert.IsTrue(result.Contains(DEFAULT_TODOS.Last()));
         }
 
         [TestMethod]
@@ -52,9 +53,9 @@ namespace ContinuousDeliveryDemo.Component.Test.Infrastructure
             _todoRepository.Create("todo three");
             
             // Assert
-            var resultList = database.ListRange(TEST_KEY);
-            Assert.AreEqual(3, resultList.Count());
-            Assert.AreEqual(resultList.Last(), newValue);
+            var resultSet = database.SetMembers(TEST_KEY);
+            Assert.AreEqual(3, resultSet.Count());
+            Assert.IsTrue(resultSet.ToList().Contains(newValue));
         }
 
         [TestMethod]
@@ -64,9 +65,9 @@ namespace ContinuousDeliveryDemo.Component.Test.Infrastructure
             _todoRepository.Delete("todo two");
             
             // Assert
-            var resultList = database.ListRange(TEST_KEY);
-            Assert.AreEqual(1, resultList.Count());
-            Assert.AreEqual(DEFAULT_TODOS.First(), (string) resultList.First());
+            var resultSet = database.SetMembers(TEST_KEY);
+            Assert.AreEqual(1, resultSet.Count());
+            Assert.IsFalse(resultSet.ToList().Contains("todo two"));
         }
     }
 }

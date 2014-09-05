@@ -127,17 +127,17 @@ namespace ContinuousDeliveryDemo.UI.Test
         {
             RedisConnection.RedisConnectionStringProviderOverride = new FakeRedisConnectionStringProvider();
             IDatabase db = RedisConnection.GetInstance().GetDatabase();
-            DEFAULT_TODOS.ForEach(todo => db.ListRemove(TODO_KEY, todo));
-            db.ListRemove(TODO_KEY, NEW_TODO_VALUE);
-            DEFAULT_TODOS.ForEach(todo => db.ListRightPush(TODO_KEY, todo));
+            DEFAULT_TODOS.ForEach(todo => db.SetRemove(TODO_KEY, todo));
+            db.SetRemove(TODO_KEY, NEW_TODO_VALUE);
+            DEFAULT_TODOS.ForEach(todo => db.SetAdd(TODO_KEY, todo));
         }
 
         private void TearDownData()
         {
             RedisConnection.RedisConnectionStringProviderOverride = new FakeRedisConnectionStringProvider();
             IDatabase db = RedisConnection.GetInstance().GetDatabase();
-            DEFAULT_TODOS.ForEach(todo => db.ListRemove(TODO_KEY, todo));
-            db.ListRemove(TODO_KEY, NEW_TODO_VALUE);
+            DEFAULT_TODOS.ForEach(todo => db.SetRemove(TODO_KEY, todo));
+            db.SetRemove(TODO_KEY, NEW_TODO_VALUE);
         }
     }
 }

@@ -20,17 +20,17 @@ namespace ContinuousDeliveryDemo.Infrastructure.Repository
 
         public IEnumerable<string> FindAll()
         {
-            return _database.ListRange(_todoKey).Select(t => (string)t);
+            return _database.SetMembers(_todoKey).Select(t => (string)t);
         }
 
         public void Create(string message)
         {
-            _database.ListRightPush(_todoKey, message);
+            _database.SetAdd(_todoKey, message);
         }
 
         public void Delete(string message)
         {
-            _database.ListRemove(_todoKey, message);
+            _database.SetRemove(_todoKey, message);
         }
     }
 }

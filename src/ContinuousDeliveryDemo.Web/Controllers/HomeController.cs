@@ -31,6 +31,7 @@ namespace ContinuousDeliveryDemo.Web.Controllers
             return Redirect("/");
         }
 
+        [HttpPost]
         public ActionResult Delete(DeleteTodoModel deleteTodoModel)
         {
             deleteTodoModel.Delete();

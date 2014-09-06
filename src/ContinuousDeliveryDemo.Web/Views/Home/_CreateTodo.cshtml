@@ -2,6 +2,10 @@
 
 @using (Html.BeginForm("create", "home"))
 {
-    @Html.EditorFor(m => m.Message)
-    <button type="submit" id="create-todo-submit">Save</button>
+    <div class="input-group">    
+        @Html.EditorFor(m => m.Message)
+        <span class="input-group-btn">
+            <button type="submit" id="create-todo-submit" class="btn btn-primary">Save</button>
+        </span>
+    </div>
 }

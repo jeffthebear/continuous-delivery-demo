@@ -9,19 +9,25 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Todos</title>
+    <link href="~/css/bootstrap-superhero.css" rel="stylesheet">
 </head>
     <body>
-        <h1>Todos:</h1>
-        <ul>
-            @{ var i = 0; }
-            @foreach (var todo in @Model.Todos)
-            {
-                <li>
-                    @todo.Message
-                    @Html.Partial("_DeleteTodo", Model.GetDeleteTodoModelWithContext(todo.Message), new ViewDataDictionary() {{ "Index", i }})                    
-                </li>
-            }
-        </ul>
-        @Html.Partial("_CreateTodo", Model.GetCreateTodoModelWithContext())
+        <div class="container">
+            <h1>Todos:</h1>
+            <div class="well">
+                <table class="list-unstyled">
+                    @{ var i = 0; }
+                    @foreach (var todo in @Model.Todos)
+                    {
+                        <tr>
+                            <td><h3>@todo.Message</h3></td>
+                            <td style="width: 2em"></td>
+                            <td>@Html.Partial("_DeleteTodo", Model.GetDeleteTodoModelWithContext(todo.Message), new ViewDataDictionary() {{ "Index", i }})</td>
+                        </tr>
+                    }
+                </table>
+                @Html.Partial("_CreateTodo", Model.GetCreateTodoModelWithContext())
+            </div>
+        </div>
     </body>
 </html>

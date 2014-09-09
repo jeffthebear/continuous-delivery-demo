@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using ContinuousDeliveryDemo.Component.Test.Fakes;
-using ContinuousDeliveryDemo.Infrastructure.Helpers;
+using ContinuousDeliveryDemo.Component.Test.Helpers;
 using ContinuousDeliveryDemo.Infrastructure.Redis;
 using ContinuousDeliveryDemo.Web;
 using ContinuousDeliveryDemo.Web.Infrastructure;

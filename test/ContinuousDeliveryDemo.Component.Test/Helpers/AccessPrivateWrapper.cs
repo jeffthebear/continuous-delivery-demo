@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ContinuousDeliveryDemo.Infrastructure.Helpers
+namespace ContinuousDeliveryDemo.Component.Test.Helpers
 {
     // From: http://www.amazedsaint.com/2010/05/accessprivatewrapper-c-40-dynamic.html
 

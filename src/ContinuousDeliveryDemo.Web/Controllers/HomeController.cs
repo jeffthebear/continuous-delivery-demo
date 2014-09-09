@@ -5,23 +5,21 @@ using System.Web;
 using System.Web.Mvc;
 using ContinuousDeliveryDemo.Domain.Web.Factories;
 using ContinuousDeliveryDemo.Domain.Web.ViewModels;
-using ContinuousDeliveryDemo.Infrastructure.Repository;
 
 namespace ContinuousDeliveryDemo.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ITodoRepository _todoRepository;
+        private readonly IHomeModelFactory _homeModelFactory;
 
-        public HomeController(ITodoRepository todoRepository)
+        public HomeController(IHomeModelFactory homeModelFactory)
         {
-            _todoRepository = todoRepository;
+            _homeModelFactory = homeModelFactory;
         }
 
         public ActionResult Index()
         {
-            var homeModelFactory = new HomeModelFactory(_todoRepository);
-            return View(homeModelFactory.Create());
+            return View(_homeModelFactory.Create());
         }
 
         [HttpPost]

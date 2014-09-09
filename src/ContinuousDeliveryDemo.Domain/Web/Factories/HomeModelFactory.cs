@@ -8,7 +8,7 @@ using ContinuousDeliveryDemo.Infrastructure.Repository;
 
 namespace ContinuousDeliveryDemo.Domain.Web.Factories
 {
-    public class HomeModelFactory
+    public class HomeModelFactory : IHomeModelFactory
     {
         private readonly ITodoRepository _todoRepository;
 

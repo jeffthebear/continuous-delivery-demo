@@ -1,6 +1,6 @@
 ﻿using System.Linq;
+using ContinuousDeliveryDemo.Domain.Web.Factories;
 using ContinuousDeliveryDemo.Domain.Web.ViewModels;
-using ContinuousDeliveryDemo.Infrastructure.Repository;
 using ContinuousDeliveryDemo.Unit.Test.Fakes;
 using ContinuousDeliveryDemo.Web.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -16,15 +16,28 @@ namespace ContinuousDeliveryDemo.Unit.Test.Web.Controllers
         public void IndexShouldReturnTwoTodos()
         {
             // Arrange
+            var todos = new[]
+                {
+                    new TodoItem() {Message = "first todo"},
+                    new TodoItem() {Message = "second todo"},
+                };
             var fakeTodoRepository = new FakeTodoRepository();
-            var homeController = new HomeController(fakeTodoRepository);
+            var mockHomeModelFactory = new Mock<IHomeModelFactory>();
+            mockHomeModelFactory
+                .Setup(factory => factory.Create())
+                .Returns(new HomeModel(fakeTodoRepository)
+                    {
+                        Todos = todos
+                    });
+            var homeController = new HomeController(mockHomeModelFactory.Object);
 
             // Act
-            var result = (ViewResult) homeController.Index();
+            var result = (ViewResult)homeController.Index();
 
             // Assert
-            var homeModel = (HomeModel) result.Model;
-            Assert.AreEqual(fakeTodoRepository.FindAll().First(), homeModel.Todos.First().Message);
+            var homeModel = (HomeModel)result.Model;
+            Assert.AreEqual(todos.First().Message, homeModel.Todos.First().Message);
+            Assert.AreEqual(todos[1].Message, homeModel.Todos.ToList()[1].Message);
         }
 
         [TestMethod]
@@ -33,7 +46,8 @@ namespace ContinuousDeliveryDemo.Unit.Test.Web.Controllers
             // Arrange
             const string message = "hello";
             var fakeTodoRepository = new FakeTodoRepository();
-            var homeController = new HomeController(fakeTodoRepository);
+            var mockHomeModelFactory = new Mock<IHomeModelFactory>();
+            var homeController = new HomeController(mockHomeModelFactory.Object);
             var createTodoModel = new CreateTodoModel(fakeTodoRepository);
             createTodoModel.Message = message;
 
@@ -46,28 +60,13 @@ namespace ContinuousDeliveryDemo.Unit.Test.Web.Controllers
         }
 
         [TestMethod]
-        public void CreateShouldCreateTodoModelAndRedirectToRootUsingMocks()
-        {
-            // Arrange
-            var mockRepository = new Mock<ITodoRepository>();
-            var homeController = new HomeController(mockRepository.Object);
-            var mock = new Mock<CreateTodoModel>(mockRepository.Object);
-            
-            // Act
-            var result = homeController.Create(mock.Object);
-
-            // Assert
-            mock.Verify(model => model.Save(), Times.Exactly(1));
-            Assert.AreEqual("/", ((RedirectResult)result).Url);
-        }
-
-        [TestMethod]
         public void DeleteShouldDeleteTodoModelAndRedirectToRoot()
         {
             // Arrange
             const string message = "goodbye";
             var fakeTodoRepository = new FakeTodoRepository();
-            var homeController = new HomeController(fakeTodoRepository);
+            var mockHomeModelFactory = new Mock<IHomeModelFactory>();
+            var homeController = new HomeController(mockHomeModelFactory.Object);
             var deleteTodoModel = new DeleteTodoModel(fakeTodoRepository);
             deleteTodoModel.Message = message;
 

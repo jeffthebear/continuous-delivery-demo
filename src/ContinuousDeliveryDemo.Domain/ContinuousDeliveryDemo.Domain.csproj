@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Web\Factories\HomeModelFactory.cs" />
+    <Compile Include="Web\Factories\IHomeModelFactory.cs" />
     <Compile Include="Web\ViewModels\CreateTodoModel.cs" />
     <Compile Include="Web\ViewModels\DeleteTodoModel.cs" />
     <Compile Include="Web\ViewModels\HomeModel.cs" />

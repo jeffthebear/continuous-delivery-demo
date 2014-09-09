@@ -29,6 +29,6 @@ namespace ContinuousDeliveryDemo.Domain.Web.ViewModels
             return _deleteTodoModel;
         }
 
-        public IEnumerable<TodoItem> Todos { get; set; }
+        public IEnumerable<TodoItem> Todos { get; internal set; }
     }
 }

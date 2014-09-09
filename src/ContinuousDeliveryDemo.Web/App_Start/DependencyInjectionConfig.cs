@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ContinuousDeliveryDemo.Domain.Web.Factories;
 using ContinuousDeliveryDemo.Infrastructure.Repository;
 using ContinuousDeliveryDemo.Web.Infrastructure;
 using Microsoft.Practices.Unity;
@@ -24,6 +25,7 @@ namespace ContinuousDeliveryDemo.Web.App_Start
             // register all your components with the container here
             // it is NOT necessary to register your controllers
             container.RegisterInstance(typeof(ITodoRepository), new TodoRepository("todo"));
+            container.RegisterType<IHomeModelFactory, HomeModelFactory>();
             return container;
         }
     }

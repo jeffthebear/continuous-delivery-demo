@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ContinuousDeliveryDemo.Component.Test.Helpers
+namespace ContinuousDeliveryDemo.Infrastructure.Helpers
 {
     // From: http://www.amazedsaint.com/2010/05/accessprivatewrapper-c-40-dynamic.html
 

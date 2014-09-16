@@ -1,33 +1,25 @@
-﻿using System.Linq;
+﻿using System;
 using System.Collections.Generic;
-using ContinuousDeliveryDemo.Component.Test.Fakes;
-using ContinuousDeliveryDemo.Infrastructure.Redis;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using ContinuousDeliveryDemo.Infrastructure.Repository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using StackExchange.Redis;
 
 namespace ContinuousDeliveryDemo.Component.Test.Infrastructure
 {
-    /// <summary>
-    /// Summary description for TodoRepositoryTest
-    /// </summary>
     [TestClass]
-    public class TodoRepositoryTest
+    public class InMemoryRepositoryTest
     {
         private ITodoRepository _todoRepository;
-        private IDatabase database;
-        private const string TEST_KEY = "todo_component_test";
-        private IEnumerable<string> DEFAULT_TODOS = new[] {"todo one", "todo two"};
+        private IEnumerable<string> DEFAULT_TODOS = new[] { "todo one", "todo two" };
 
         [TestInitialize]
         public void SetUp()
         {
-            RedisConnection.RedisConnectionStringProviderOverride = new FakeRedisConnectionStringProvider();
-            _todoRepository = new TodoRepository(TEST_KEY, RedisConnection.GetInstance().GetDatabase());
-            database = RedisConnection.GetInstance().GetDatabase();
-            database.KeyDelete(TEST_KEY, CommandFlags.FireAndForget);
-            DEFAULT_TODOS.ToList().ForEach(todo => 
-                database.SetAdd(TEST_KEY, todo)
+            _todoRepository = new InMemoryRepository();
+            DEFAULT_TODOS.ToList().ForEach(todo =>
+                _todoRepository.Create(todo)
                 );
         }
 
@@ -51,9 +43,9 @@ namespace ContinuousDeliveryDemo.Component.Test.Infrastructure
 
             // Act
             _todoRepository.Create("todo three");
-            
+
             // Assert
-            var resultSet = database.SetMembers(TEST_KEY);
+            var resultSet = _todoRepository.FindAll();
             Assert.AreEqual(3, resultSet.Count());
             Assert.IsTrue(resultSet.ToList().Contains(newValue));
         }
@@ -63,9 +55,9 @@ namespace ContinuousDeliveryDemo.Component.Test.Infrastructure
         {
             // Act
             _todoRepository.Delete("todo two");
-            
+
             // Assert
-            var resultSet = database.SetMembers(TEST_KEY);
+            var resultSet = _todoRepository.FindAll();
             Assert.AreEqual(1, resultSet.Count());
             Assert.IsFalse(resultSet.ToList().Contains("todo two"));
         }

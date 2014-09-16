@@ -10,6 +10,7 @@ namespace ContinuousDeliveryDemo.Infrastructure.Redis
 {
     public static class RedisConnection
     {
+        // This is for testing
         internal static IRedisConnectionStringProvider RedisConnectionStringProviderOverride { get; set; }
 
         private static readonly object _initializationLock = new object();

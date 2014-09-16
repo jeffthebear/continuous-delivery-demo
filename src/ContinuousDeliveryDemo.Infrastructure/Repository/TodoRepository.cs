@@ -12,10 +12,10 @@ namespace ContinuousDeliveryDemo.Infrastructure.Repository
     {
         private readonly string _todoKey;
         private readonly IDatabase _database;
-        public TodoRepository(string key)
+        public TodoRepository(string key, IDatabase database)
         {
             _todoKey = key;
-            _database = RedisConnection.GetInstance().GetDatabase();
+            _database = database;
         }
 
         public IEnumerable<string> FindAll()

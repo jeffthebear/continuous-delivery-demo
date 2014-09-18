@@ -13,24 +13,15 @@ namespace ContinuousDeliveryDemo.Infrastructure.Settings
     {
         public string GetConnectionString()
         {
-            if (IsAlternateConfigAvailable())
+            var alternateConfig = new AlternateConfig();
+            if (alternateConfig.IsAlternateConfigAvailable())
             {
-                using (AppConfig.Change(GetAlternateConfigPath()))
+                using (AppConfig.Change(alternateConfig.GetAlternateConfigPath()))
                 {
                     return ConfigurationManager.ConnectionStrings["redisConnection"].ConnectionString;
                 }
             }
             throw new FileNotFoundException("Could not find configuration file.");
-        }
-
-        private string GetAlternateConfigPath()
-        {
-            return Path.Combine(HostingEnvironment.ApplicationPhysicalPath, "App_Data", "app.config");
-        }
-
-        private bool IsAlternateConfigAvailable()
-        {
-            return File.Exists(GetAlternateConfigPath());
         }
     }
 }

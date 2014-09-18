@@ -50,6 +50,7 @@
     <Compile Include="Repository\InMemoryRepository.cs" />
     <Compile Include="Repository\ITodoRepository.cs" />
     <Compile Include="Repository\TodoRepository.cs" />
+    <Compile Include="Settings\AlternateConfig.cs" />
     <Compile Include="Settings\AppConfig.cs" />
     <Compile Include="Settings\RedisConnectionStringProvider.cs" />
     <Compile Include="Settings\IRedisConnectionStringProvider.cs" />

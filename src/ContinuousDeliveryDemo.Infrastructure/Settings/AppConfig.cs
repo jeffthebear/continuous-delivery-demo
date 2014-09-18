@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace ContinuousDeliveryDemo.Infrastructure.Settings
 {
     // From: http://stackoverflow.com/questions/6150644/change-default-app-config-at-runtime/6151688#6151688
-    internal abstract class AppConfig : IDisposable
+    public abstract class AppConfig : IDisposable
     {
         public static AppConfig Change(string path)
         {

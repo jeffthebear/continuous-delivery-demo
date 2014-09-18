@@ -17,7 +17,14 @@ namespace ContinuousDeliveryDemo.Infrastructure.Settings
 
         public bool IsAlternateConfigAvailable()
         {
-            return File.Exists(GetAlternateConfigPath());
+            try
+            {
+                return File.Exists(GetAlternateConfigPath());
+            }
+            catch (ArgumentNullException)
+            {
+                return false;
+            }
         }
     }
 }
